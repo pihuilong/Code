@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <div id="demo">
+        <h2>{{msg}}</h2>
+        <form name="myvue" v-on:submit.prevent="additem(newitem)">
+            <div v-for="(item,index) in items">
+                <label>{{item.text}}  &nbsp;&nbsp;
+                <button class="index" @click="deleteitem(index)">delete me </button> </label>
+            </div>
+            <div>
+                <input type="text" v-model="newitem.text">
+            </div>
+            <div>
+                <button>add</button>
+            </div>
+        </form>
+    </div>
+    <script>
+        new Vue({
+            el:"#demo",
+            data:{
+                msg:"first vuejs demo",
+                items:[
+                    {text:'hello shiyanlou!'}
+                ],
+                newitem:{text:''}
+            },
+            methods:{
+                additem(newitem){
+                    this.items.push(newitem);
+                    this.newitem={text:''}
+                },
+                deleteitem(index){
+                    this.items.splice(index,1);
+                    var elem = document.getElementsByClassName("index");
+                    elem[index].parentNode.removeChild(elem[index]);
+                }
+            }
+        })
+    </script>
+</body>
+</html>

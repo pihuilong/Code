@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <div id="demo">
+        <p>No.1</p>
+        <p>predict: you can show me</p>
+        <span v-if="show">you can show me</span>
+        <span v-else>can you show me?</span>
+        <br>
+        <p>No.2</p>
+        <p>predict: can you show me?</p>
+        <span v-if="hide">you can show me</span>
+        <span v-else>can you show me?</span>
+        <br>
+        <p>No.2</p>
+        <p>predict: can you really show me?</p>
+        <span v-if="hide">you can show me</span>
+        <span v-else-if="hide">can you show me?</span>
+        <span v-else>can you really show me?</span>
+        <br>
+    </div>
+    <script>
+        new Vue({
+            el:'#demo',
+            data:{
+                show:true,
+                hide:false
+            }
+        })
+    </script>
+</body>
+</html>

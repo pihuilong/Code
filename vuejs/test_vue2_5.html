@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <div id="demo">
+        <button v-on:click="doThis">{{msg}}</button>
+    </div>
+    <script>
+        new Vue({
+            el:"#demo",
+            data:{
+                msg:"click this",
+                name:"vuejs"
+            },
+            methods:{
+                doThis:function(e){
+                    console.log(this);
+                    console.log(e.target);
+                    console.log('hello '+this.name+' !');
+                }
+            }
+        })
+    </script>
+</body>
+</html>

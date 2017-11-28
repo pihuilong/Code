@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8"/>
+    <title>Vuejs简单示例</title>
+    <!--引入开发版本vue.js，在开发版本中会有很多友好的提示-->
+    <!--下面为cdn引用方式，实验中我们使用下载好的vue.js-->
+    <link href="https://cdn.bootcss.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .active{
+            background-color:red;
+        }
+    </style>
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+    <script src='https://unpkg.com/vue@2.1.10/dist/vue.js'></script>
+</head>
+
+<body>
+<div id="demo" class="container">
+
+    <div class="row" style="margin-bottom:20px">
+        <div class="col-sm-6 input-group" >
+            <button class="btn btn-primary" @click="addPerson">{{buttons.addPerson}}</button>
+            newPerson : <input class="form-control" type="text" v-model="newperson.name">
+        </div>
+    </div>
+
+    <div class="row" :class="{active:isActive}" style="margin-bottom:20px">
+        <div class="col-sm-3" v-for="(item,index) in persons" style="margin-bottom:10px">
+            <button class="btn btn-danger" @click="delPerson(index)">{{buttons.deletePerson}}</button>
+            {{item.name}}
+        </div>
+    </div>
+    <area_test v-bind:msg="persons"></area_test>
+    <area_test2></area_test2>
+    <area_test2></area_test2>
+    <area_test2></area_test2>
+</div>
+
+<script type="text/tmplate-x" id="tmplate">
+    <h2>For Example</h2>
+</script>
+<script>
+    Vue.component('area_test',{
+        props:['msg'],
+        template:'<div class="row">'+
+        '<select multiple size="20" class="form-control col-sm-3" style="width: inherit" required>'+
+            '<option v-text="item.name" v-for="(item,index) in msg">'+
+                '{{item.name}}:{{index}}'+
+            '</option>'+
+           ' <option>SB</option>'+
+        '</select>'+
+    '</div>'
+    });
+    Vue.component("area_test2",{
+        template:"#tmplate"
+    });
+
+    var vm = new Vue({
+        el: "#demo",
+        data: {
+
+            msg: "John",
+            isActive:false,
+            buttons: {
+                doThis: "doThis",
+                addPerson: "addPersonInto Persons",
+                deletePerson: "delete this"
+            },
+
+            persons: [{
+                name: "Amils",
+                age: 12
+            }, {
+                name: "Dosh",
+                age: 13
+            }],
+            newperson: {
+                name: Math.random() * 1000
+            }
+        },
+        methods: {
+            doThis: function (e) {
+                console.log(e.target);
+
+            },
+            addPerson: function (e) {
+                this.persons.push(this.newperson);
+                this.newperson = {name: Math.random() * 1000};
+            },
+            delPerson: function (index) {
+                this.persons.splice(index, 1);
+            }
+        }
+    });
+</script>
+
+</body>
+
+</html>

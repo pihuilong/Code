@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <div id="demo">
+        <div v-html="msg"></div>
+    </div>
+    <script>
+        new Vue({
+            el:'#demo',
+            data:{
+                msg:'first<br><hr>second<br><ul><li>hello</li><li>world</li></ul>'
+            }
+        })
+    </script>
+</body>
+</html>

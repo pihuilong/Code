@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Vuejs简单示例</title>
+
+        <script src='./vue.js'></script>
+    </head>
+    <body>
+        <!--定义一个id为demo的div-->
+        <div id="demo">
+
+        <!--此处的msg为在vuejs中定义的变量，放在两个花括号中-->
+        <h1>{{msg}}</h1>
+        <h2>{{itemlength}}</h2>
+         <my-component v-bind:items='items'></my-component>
+
+        </div>
+        <script type="text/x-tmplate" id="my_component">
+                    <div>
+                        <div v-for="(item,index) in items">
+                            <p>{{ item.text }} <button @click=deleteItem(index) class="btns">:{{item.text}}</button></p>
+                        </div>
+                        <div>
+                            <input type="text" v-model="newitem.text">
+                        </div>
+                        <div>
+                            <button @click="additem(newitem)">添加</button>
+                        </div>
+                    </div>
+        </script>
+      <script>
+        Vue.component('my-component', {
+            template: '#my_component',
+            props:['msg','items'],
+            data(){
+                return {
+                    newitem:{text:''}
+                }
+            },
+             methods:{
+                    additem(newitem){
+                        this.items.push(newitem)
+                        this.newitem={text:''}
+                    },
+                    deleteItem(index){
+                        var that=this;
+                        var targetdom=document.getElementsByClassName("btns");
+                        targetdom[index].parentNode.removeChild(targetdom[index]);
+                        setTimeout(function(){that.items.splice(index,1)},200)
+                    }
+            }
+        })
+
+            new Vue({
+                el:'#demo',
+                data:{
+                    msg:'实验楼第一个vuejs示例',
+                    items:[
+                        {text:'hello 实验楼'}
+                    ]
+                },
+                computed:{
+                    itemlength(){
+                        return this.items.length;
+                    }
+                }
+
+            })
+    </script>
+    </body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <div id="demo">
+        <span v-show="show">you can show me</span>
+        <span v-show="hide">can you show me?</span>
+    </div>
+    <script>
+        new Vue({
+            el:'#demo',
+            data:{
+                show:true,
+                hide:false
+            }
+        })
+    </script>
+</body>
+</html>
