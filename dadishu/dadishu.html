@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Whac a Mole</title>
+    <style>
+        #content{
+            width: 960px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        table{
+            margin: 0 auto;
+            cursor: url('img/chuizi.png'),auto;
+        }
+        td{
+            width: 95px;
+            height: 95px;
+            background-color: #00ff33;
+        }
+    </style>
+    <script src="jquery-3.2.1.js"></script>
+    <script src="main.js"></script>
+</head>
+<body>
+    <div id="content">
+        <input type="button" value="start the game" onclick="GameStart()">
+        <input type="button" value="end the game" onclick="GameOver()">
+
+        <form name="form1">
+            <label for="">score:</label>
+            <input type="text" name="score" size="5">
+            <label for="">hit rate:</label>
+            <input type="text" name="success" size="10">
+            <label for="">countdown:</label>
+            <input type="text" name="remtime" id=5">
+        </form>
+
+        <table>
+            <tr>
+                <td id="td0" onclick="hit(0)"></td>
+                <td id="td1" onclick="hit(1)"></td>
+                <td id="td2" onclick="hit(2)"></td>
+                <td id="td3" onclick="hit(3)"></td>
+                <td id="td4" onclick="hit(4)"></td>
+            </tr>
+            <tr>
+                <td id="td5" onclick="hit(5)"></td>
+                <td id="td6" onclick="hit(6)"></td>
+                <td id="td7" onclick="hit(7)"></td>
+                <td id="td8" onclick="hit(8)"></td>
+                <td id="td9" onclick="hit(9)"></td>
+            </tr> 
+            <tr>
+                <td id="td10" onclick="hit(10)"></td>
+                <td id="td11" onclick="hit(11)"></td>
+                <td id="td12" onclick="hit(12)"></td>
+                <td id="td13" onclick="hit(13)"></td>
+                <td id="td14" onclick="hit(14)"></td>
+            </tr>
+            <tr>
+                <td id="td15" onclick="hit(15)"></td>
+                <td id="td16" onclick="hit(16)"></td>
+                <td id="td17" onclick="hit(17)"></td>
+                <td id="td18" onclick="hit(18)"></td>
+                <td id="td19" onclick="hit(19)"></td>
+            </tr>
+            <tr>
+                <td id="td20" onclick="hit(20)"></td>
+                <td id="td21" onclick="hit(21)"></td>
+                <td id="td22" onclick="hit(22)"></td>
+                <td id="td23" onclick="hit(23)"></td>
+                <td id="td24" onclick="hit(24)"></td>
+            </tr>
+        </table>      
+    </div>
+</body>
+</html>
