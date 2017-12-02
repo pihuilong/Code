@@ -81,7 +81,7 @@ $(function(){
     
     dadishu.prototype.GameOver=function(){
         if(!this.playing){
-            return;rtime,this.disappertime
+            return;
         }else{
             this.timeStop();
             this.playing=false;
