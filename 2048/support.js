@@ -40,6 +40,16 @@ function get_number_color(number) {
     return 'white';
 }
 
+//获取字体大小
+function get_number_fontSize(number){
+    var len=number.toString().length;
+    if(len>2){
+        return Math.floor(cell_side_length/len+10) + "px";
+    }else{
+        return 0.6*cell_side_length+'px';
+    }
+}
+
 //判断棋盘上是否还有空格子
 function nospace(board) {
     for (var i = 0; i < 4; i++) {
@@ -53,4 +63,83 @@ function nospace(board) {
 }
 
 
+//判断是否能向左移动
+function can_move_left(board){
+    for(var i=0;i<4;i++){
+        for(var j=1;j<4;j++){
+            if(board[i][j]!=0){
+                if(board[i][j-1]==0 || board[i][j-1]==board[i][j]){
+                    return true;
+                }
+            }
+        }
+    }
+    return false;
+}
+//判断是否能向右移动
+function can_move_right(board){
+    for(var i=0;i<4;i++){
+        for(var j=0;j<3;j++){
+            if(board[i][j]!=0){
+                if(board[i][j+1]==0 || board[i][j]==board[i][j+1]){
+                    return true;
+                }
+            }
+        }
+    }
+    return false;
+}
+//判断是否能向上移动
+function can_move_up(board){
+    for(var i=1;i<4;i++){
+        for(var j=0;j<4;j++){
+            if(board[i][j]!=0){
+                if(board[i-1][j]==0 || board[i][j]==board[i-1][j]){
+                    return true;
+                }
+            }
+        }
+    }
+    return false;
+}
+//判断是否能向下移动
+function can_move_down(board){
+    for(var i=0;i<3;i++){
+        for(var j=0;j<4;j++){
+            if(board[i][j]!=0){
+                if(board[i+1][j]==0 || board[i+1][j]==board[i][j]){
+                    return true;
+                }
+            }
+        }
+    }
+    return false;
+}
 
+
+//判断水平方向是否有空格子
+function no_block_horizontal(row,col1,col2,board){
+    for(var i=col1+1;i<col2;i++){
+        if(board[row][i]!=0){
+            return false;
+        }
+    }
+    return true;
+}
+//判断垂直方向是否有空格子
+function no_block_vertical(col,row1,row2,board){
+    for(var i=row1+1;i<row2;i++){
+        if(board[i][col]!=0){
+            return false;
+        }
+    }
+    return true;
+}
+
+//判断是否还能移动
+function nomove(board){
+    if(can_move_down(board)||can_move_up(board)||can_move_left(board)||can_move_right(board)){
+        return false;
+    }
+    return true;
+}

@@ -63,13 +63,14 @@ function update_board_view(){
                 number_cell.css('left',get_pos_left(i,j));
                 number_cell.css('background-color',get_number_background_color(board[i][j]));
                 number_cell.css('color',get_number_color(board[i][j]));
+                number_cell.css('font-size',get_number_fontSize(board[i][j]));
                 number_cell.text(board[i][j]);
             }
             has_conflicated[i][j]=false;
         }
     }
     $('.number_cell').css('line-height',cell_side_length+'px');
-    $('.number_cell').css('font-size',0.6*cell_side_length+'px');
+    // $('.number_cell').css('font-size',0.6*cell_side_length+'px');
 }
 
 
@@ -225,12 +226,7 @@ document.addEventListener("touchend",function(event){
                     generate_one_number();
                 }, 210);
                 setTimeout(() => {
-                    is_gamsetTimeout(() => {
-                        generate_one_number();
-                    }, 210);
-                    setTimeout(() => {
-                        is_gameover();
-                    }, 300);eover();
+                    is_gameover();
                 }, 300);
             }
         }
@@ -309,7 +305,7 @@ function move_right(){
                         board[i][k]=board[i][j];
                         board[i][j]=0;
                         break;
-                    }else if(board[i][k]==board[i][j] && no_block_horizontal(i,j,k,board)){
+                    }else if(board[i][k]==board[i][j] && no_block_horizontal(i,j,k,board) && !has_conflicated[i][k]){
                         show_move_animation(i,j,i,k);
                         board[i][k]+=board[i][j];
                         board[i][j]=0;
@@ -329,7 +325,7 @@ function move_right(){
 }
 //向上移动
 function move_up(){
-    if(!can_move_up()){
+    if(!can_move_up(board)){
         return false;
     }
     // move up
@@ -342,7 +338,7 @@ function move_up(){
                         board[k][j]=board[i][j];
                         board[i][j]=0;
                         break;
-                    }else if(board[k][j]==board[i][j] && no_block_vertical(j,k,i,board) && !has_conflicated){
+                    }else if(board[k][j]==board[i][j] && no_block_vertical(j,k,i,board) && !has_conflicated[k][j]){
                         show_move_animation(i,j,k,j);
                         board[k][j]+=board[i][j];
                         board[i][j]=0;
@@ -375,7 +371,7 @@ function move_down(){
                         board[k][j]=board[i][j];
                         board[i][j]=0;
                         break;
-                    }else if(board[k][j]==0 && no_block_vertical(j,i,k,board) && !has_conflicated[k][j]){
+                    }else if(board[k][j]==board[i][j] && no_block_vertical(j,i,k,board) && !has_conflicated[k][j]){
                         show_move_animation(i,j,k,j);
                         board[k][j]+=board[i][j];
                         board[i][j]=0;
