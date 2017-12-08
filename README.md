@@ -6,3 +6,4 @@ Some practice Code
 * **dadishu**该文件夹为html&css&js&jquery实现的打地鼠游戏
 * **tank**该文件夹为使用js监听按键、js对DOM操作实现的坦克移动模型
 * **2048**该文件夹为使用jquery写的2048游戏，能实现在桌面端和移动端运行
+* **minesweeper**该文件夹为使用js写的扫雷游戏
