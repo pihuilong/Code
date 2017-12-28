@@ -9,13 +9,15 @@
 </head>
 <body>
     <div id="demo">
-        <div v-html="msg"></div>
+        <span v-show="show">you can show me</span>
+        <span v-show="hide">can you show me?</span>
     </div>
     <script>
-        new Vue({
+        var app = new Vue({
             el:'#demo',
             data:{
-                msg:'first<br><hr>second<br><ul><li>hello</li><li>world</li></ul>'
+                show:true,
+                hide:false
             }
         })
     </script>
