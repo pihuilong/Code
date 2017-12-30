@@ -199,12 +199,12 @@
         //show the cell
         openBlock: function (obj, x, y) {
             if (this.arrs[x][y] != 9) {
-                this.currentSetpCount++;
+                this.currentStepCount++;
                 if (this.arrs[x][y] != 0) {
                     obj.innerHTML = this.arrs[x][y];
                 }
                 obj.className = "normal";
-                if (this.currentSetpCount + this.landMineCount == this.rowCount * this.colCount) {
+                if (this.currentStepCount + this.landMineCount == this.rowCount * this.colCount) {
                     this.success();
                 }
                 obj.onmousedown = null;

@@ -42,12 +42,17 @@ $(function(){
 
     Slider.prototype.rotate = function(clickID){
         var that=this;
+        var clickFlag=false;
         if(clickID){
             that.nextID=clickID;
+            clickFlag=true;
         }else{
             that.nextID=that.activeID <= that.imageNum-1 ? that.activeID+1 : 1;
         }
     
+        if(that.nextID==that.activeID){
+            return;
+        }
         $(that.icoArr[that.activeID-1]).removeClass("active");
         $(that.icoArr[that.nextID-1]).addClass("active");
         $(that.titleArr[that.activeID-1]).animate(
@@ -57,9 +62,9 @@ $(function(){
                 $(that.titleArr[that.nextID-1]).animate({bottom:"0px"},that.titleSpeed);
             }
         );
-        $(that.imgArr[that.activeID-1].firstChild).animate({opacity:"0.1"},that.imageSpeed);
+        $(that.imgArr[that.activeID-1].firstChild).animate({opacity:"0.8"},that.imageSpeed);
         $(that.imgArr[that.nextID-1].firstChild).animate({opacity:"1"},that.imageSpeed);
-        if(that.activeID==that.imageNum){
+        if(that.activeID==that.imageNum && !clickFlag){
             that.imageBox.animate({left:"-"+(that.activeID)*that.imageWidth+"px"},that.imageSpeed);
             setTimeout(() => {
                 that.imageBox.css("left","0");
