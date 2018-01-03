@@ -47,6 +47,14 @@
                         <li> <router-link to="/bootcamp">Bootcamp</router-link> </li>
                         <li><router-link to="/discuss">Discussion</router-link></li>
                     </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <router-link to="/login">login</router-link>
+                        </li>
+                        <li>
+                            <router-link to="/reg">reg</router-link>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </nav>
@@ -101,7 +109,9 @@
                         {path: 'priview',component:coursespriview},
                         {path: 'develop',component:coursesdevelop}
                     ]
-                }
+                },
+                {path:'/login',component: Login},
+                {path:'/reg',component:Reg}
             ]
         });
 

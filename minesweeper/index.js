@@ -32,6 +32,7 @@ function init(rowCount,colCount,minLandMineCount,maxLandMineCount){
 
     jms.endCallBack = function () {
         clearInterval(timeHandle);
+        timeShow.innerHTML = parseInt((jms.endTime - jms.beginTime) / 1000);
     };
     
     jms.landMineCallBack = function (count) {
@@ -40,6 +41,7 @@ function init(rowCount,colCount,minLandMineCount,maxLandMineCount){
     
     //为“开始游戏”按钮绑定事件
     beginButton.onclick = function () {
+        timeShow.innerHTML =0;
         jms.play();//初始化
     
         //显示地雷个数
