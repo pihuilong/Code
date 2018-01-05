@@ -8,3 +8,4 @@ Some practice Code
 * **2048**该文件夹为使用jquery写的2048游戏，能实现在桌面端和移动端运行
 * **minesweeper**该文件夹为使用js写的扫雷游戏
 * **JQ_Slider**该文件夹为使用jquery写的图片轮播
+* **CSS3_GroundGlass**该文件夹为使用CSS3技术实现图片毛玻璃效果（全图&&局部）
