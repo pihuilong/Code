@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Css3 Ground Glass part</title>
+    <style>
+        .box{
+            width: 1600px;
+            height: 900px;
+            overflow: hidden;
+            background: url(rixi.jpg) no-repeat;
+            position: relative;
+        }
+        .com-img{
+            width: 1920px;
+            /* height: 920px; */
+            -webkit-filter: blur(10px) brightness(1.2) contrast(0.6);
+            filter: blur(10px) brightness(1.4) contrast(0.4);
+            position: absolute;
+            /* top: -10px;
+            left: -10px; */
+            clip: rect(100px,1300px,800px,200px);
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <img src="rixi.jpg" class="com-img" alt="">
+    </div>
+</body>
+</html>

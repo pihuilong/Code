@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CSS3 Ground Glass</title>
+    <style>
+        .container{
+            width: 1600px;
+            height: 900px;
+            /* background-image: url(rixi.jpg);
+            background-repeat: no-repeat; */
+            overflow: hidden;
+            position: relative;
+        }
+        .blur{
+            width: 1620px;
+            height:920px;
+            /* background: inherit; */
+            background-image: url(rixi.jpg);
+            -webkit-filter: blur(10px);
+            filter: blur(10px) brightness(1.4) contrast(0.4);
+            position: absolute;
+            top: -10px;
+            left: -10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="blur"></div>
+    </div>
+</body>
+</html>
