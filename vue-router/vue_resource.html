@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue-resource get data</title>
+    <link href="./bootstrap.min.css" rel="stylesheet">
+    <script src="./vue.js"></script>
+    <script src="./vue-router.js"></script>
+    <script src="./vue-resource.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/vue.resource/1.2.1/vue-resource.min.js"></script> -->
+    <style>
+    .router-link-active{
+       background-color: #e3e3e3 !important;
+        color: #ff0000 !important;
+        border-radius:5px;
+    }
+    .move-enter-active, .move-leave-active {
+    transition: opacity .5s
+    }
+    .move-enter, .move-leave-active {
+     opacity: 0
+    }
+
+    form{
+      max-width:330px;
+      padding:15px;
+    }
+
+    button{
+      max-width: 100px;
+      padding:5px;
+    }
+    input{
+      margin: 3px;
+    }
+
+    </style>
+</head>
+<body>
+<div id="app">
+ <nav class="navbar navbar-inverse">
+      <div class="container">
+
+        <div class="navbar-header">
+            <img src="./logo_03.png" alt="" height="50">
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><router-link to="/home">首页</router-link></li>
+            <li><router-link to="/courses">课程</router-link></li>
+            <li><router-link to="/paths">路径</router-link></li>
+            <li><router-link to="/bootcamp">训练营</router-link></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right"> 
+            <li><router-link to="/login" >登录</router-link></li> 
+            <li><router-link to="/reg">注册</router-link></li> 
+        </ul> 
+        </div>
+        </div>
+</nav>
+<div class="container">
+<router-view></router-view>
+</div>
+</div>
+<script>
+const Home = { template: '<div><h1>首页</h1></div>' }
+const Login = { template: '\
+<div>\
+    <div class="col-md-offset-3 col-md-6">\
+        <form>\
+            <span>用户登录</span>\
+            <div class="form-group">\
+                <input type="email" class="form-control" placeholder="用户名或电子邮件">\
+                <i class="fa fa-user"></i>\
+            </div> \
+            <div class="form-group help">\
+                <input type="password" class="form-control" placeholder="密　码">\
+                <i class="fa fa-lock"></i>\
+                <a href="#" class="fa fa-question-circle"></a> \
+                <div class="form-group">\
+                    <button class="btn btn-md btn-primary btn-block" type="submit">登录</button>\
+                </div>\
+            </div>\
+        </form>\
+    </div>\
+</div>' }
+const Reg = { template: '\
+<div>\
+    <div class="col-md-offset-3 col-md-6">\
+        <form>\
+            <span>用户注册</span>\
+            <div class="form-group">\
+                <input type="email" class="form-control" placeholder="用户名或电子邮件">\
+                <i class="fa fa-user"></i>\
+            </div> \
+            <div class="form-group help">\
+                <input type="password" class="form-control" placeholder="密　码">\
+                <i class="fa fa-lock"></i>\
+                <a href="#" class="fa fa-question-circle"></a> \
+                <div class="form-group">\
+                    <button class="btn btn-md btn-primary btn-block" type="submit">注册</button>\
+                </div>\
+            </div>\
+        </form>\
+    </div>\
+</div>' }
+const Courses = {template: '\
+<div>\
+    <ul class="nav nav-tabs">\
+        <li><router-link to="/courses/all">全部课程</router-link></li>\
+        <li><router-link to="/courses/priview">即将上线</router-link></li>\
+        <li><router-link to="/courses/develop">开发者</router-link></li>\
+    </ul>\
+    <div>\
+        <router-view></router-view>\
+    </div>\
+</div>'}
+const Paths = { template: '<div><h1>路径</h1></div>' }
+const Bootcamp = { template: '<div><h1>训练营</h1></div>' }
+
+const coursesall={template:'\
+<div>\
+    <table class="table table-bordered">\
+        <thead>\
+            <tr><th>序号</th><th>课程</th><th>关注</th></tr>\
+        </thead>\
+        <tbody>\
+            <tr v-for="(item,index) in arrayData">\
+                <td>{{index+1}}</td>\
+                <td>{{item.name}}</td>\
+                <td>{{item.age}}</td>\
+            </tr>\
+        </tbody>\
+    </table>\
+    <div class="pager" id="pager">\
+        <template v-for="item in pageCount+1">\
+            <span v-if="item==1" class="btn btn-default" v-on:click="showPage(pageCurrent-1,$event)">上一页</span>\
+            <span v-if="item>0&&item<=pageCount-1&&item>=showPagesStart&&item<=showPageEnd&&item<=pageCount" class="btn btn-default" v-on:click="showPage(item,$event)">{{item}}</span>\
+            <span v-if="item==pageCount" class="btn btn-default" v-on:click="showPage(pageCurrent+1,$event)">下一页</span>\
+        </template>\
+    </div>\
+</div>',
+data(){
+   return   {
+    course:[ ],
+
+    //当前页面
+    pageCurrent: 1,
+    //分页大小，每页有多少条
+    pagesize : 5 ,
+    //开始显示的分页按钮
+    showPagesStart: 1,
+    //结束显示的分页按钮
+    showPageEnd: 10,
+    //分页数据
+    arrayData: [],
+    }
+ },
+computed:{
+    pageCount: function () {
+    return (Math.ceil(this.course.length/this.pagesize))+1;
+}
+},          
+methods:{
+    //方法中传入页码
+    showPage: function (pageIndex) {
+        //判断页码
+        if (pageIndex > 0) {
+            if (pageIndex > this.pageCount-1) {
+                pageIndex = this.pageCount-1;
+            }
+            //定义初始数据
+            var newPageInfo = [];
+            //循环输出每页内容  判断最后一页的数量
+            this.$http.get('./data.json').then(function(response){
+                this.course=response.data;
+
+                for (var i = 0; i < this.pagesize; i++) {
+                if(this.course[i + (pageIndex - 1)*this.pagesize]!==undefined){
+                    newPageInfo[newPageInfo.length] = {
+                     name: this.course[i + (pageIndex - 1)*this.pagesize].name,
+                     age:this.course[i + (pageIndex - 1)*this.pagesize].age
+                    };
+                }
+             }
+
+            this.pageCurrent = pageIndex;
+            //数据渲染给arrayData
+            this.arrayData = newPageInfo;
+            });            
+        }
+
+    }
+},
+created: function (){
+    this.showPage(1)
+ },
+}
+
+const coursespriview={template:'<div>我是即将上线</div>'};
+const coursesdevelop={template:'<div>我是开发者</div>'};
+
+var router = new VueRouter({
+  routes: [
+    { path: '/home', component: Home },
+    { path: '/courses', component: Courses ,
+        children:[
+                    {path:'all', component:coursesall},
+                    {path:'priview', component:coursespriview},
+                    {path:'develop', component:coursesdevelop}
+                ]  
+  },
+    { path: '/paths', component: Paths },
+    { path: '/bootcamp', component: Bootcamp },
+    { path: '/login', component: Login },
+    { path: '/reg', component: Reg }
+  ]
+})
+
+var app = new Vue({
+  router,
+  el:'#app',
+}).$mount('#app');
+</script>
+</body>
+</html>

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>VUE-ROUTER</title>
+    <style>
+        .router-link-active {
+            background-color: #fff !important;
+            color: #ff0000 !important;
+            border-radius: 5px;
+        }
+
+        .move-enter-active,
+        .move-leave-active {
+            transition: opacity .2s;
+        }
+
+        .move-enter,
+        .move-leave-active {
+            opacity: 0.1;
+        }
+    </style>
+    <link rel="stylesheet" href="./bootstrap.min.css">
+    <script src="./vue.js"></script>
+    <script src="./vue-router.js"></script>
+</head>
+
+<body>
+    <!-- easy demo -->
+    <!-- <div id="app">
+        <h1>Hello App!</h1>
+        <p>
+            <router-link to="/foo">Go to foo</router-link>
+            <router-link to="/bar">Go to bar</router-link>
+        </p>
+        <router-view></router-view>
+    </div> -->
+
+    <div id="app">
+        <nav class="navbar navbar-inverse">
+            <div class="container">
+                <div class="navbar-header">
+                    <a href="#/home">
+                        <img src="./logo_03.png" alt="" height="50">
+                    </a>
+                </div>
+                <div class="collapse navbar-collapse" id="navbar">
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <router-link to="/home">Home</router-link>
+                        </li>
+                        <li>
+                            <router-link to="/courses">Courses</router-link>
+                        </li>
+                        <li>
+                            <router-link to="/paths">Paths</router-link>
+                        </li>
+                        <li>
+                            <router-link to="/bootcamp">Bootcamp</router-link>
+                        </li>
+                        <li>
+                            <router-link to="/discuss">Discussion</router-link>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <router-link to="/login">login</router-link>
+                        </li>
+                        <li>
+                            <router-link to="/reg">reg</router-link>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="container">
+            <!-- <transition name="move"> -->
+                <router-view :course="course"></router-view>
+            <!-- </transition> -->
+        </div>
+    </div>
+
+    <!-- <script>
+        //easy demo
+        /* const Foo = { template:'<div>foo</div>'  }
+        const Bar = {template:'<div>bar</div>'}
+        const routes=[
+            { path:'/foo',component:Foo  },
+            {path:'/bar',component:Bar}
+        ]
+        const router = new VueRouter({
+            routes:routes
+        });
+        const app = new Vue({
+            router:router
+        }).$mount("#app")  */
+    </script> -->
+
+    <script>
+        const Home = { template: '<div><h1>Home</h1></div>' }
+        const Paths = { template: '<div><h1>Paths</h1></div>' }
+        const Bootcamp = { template: '<div><h1>Bootcamp</h1></div>' }
+        const Discuss = { template: '<div><h1>Discussion</h1></div>' }
+        const Courses = { template: '<div>\
+            <ul class="nav nav-tabs"><li><router-link to="/courses/all">all courses</router-link></li>\
+                <li><router-link to="/courses/priview">coming soon</router-link></li>\
+                <li><router-link to="/courses/develop">developers</router-link></li></ul>\
+                <div><router-view :course="course"></router-view></div>\
+                </div>',props:['course']}
+        const coursesall = { template: '<div>\
+            <table class="table table-bordered">\
+                <thead>\
+                    <tr>\
+                        <th>序号</th>\
+                        <th>课程</th><th>关注</th>\
+                    </tr>\
+                </thead>\
+                <tbody>\
+                    <tr v-for="(course,index) in course">\
+                        <td>{{index+1}}</td><td>{{course.coursetitle}}</td>\
+                        <td>{{course.coursehit}}</td>\
+                    </tr>\
+                </tbody>\
+            </table></div>',props:{'course':Array}}
+        const coursespriview = { template: '<div>Comming Soon</div>' }
+        const coursesdevelop = { template: '<div>Developers</div>' }
+        const Login = {
+            template: '<div><div class="col-md-offset-3 col-md-6">\
+            <form>\
+                <span>User login</span>\
+                <div class="form-group">\
+                    <input type="email" class="form-control" placeholder="email">\
+                    <i class="fa fa-user"></i></div> <div class="form-group help">\
+                    <input type="password" class="form-control" placeholder="password">\
+                    <i class="fa fa-lock"></i></div><a href="#" class="fa fa-question-circle"></a>\
+                     <div class="form-group">\
+                        <button class="btn btn-md btn-primary btn-block" type="submit">Log in</button>\
+                    </div>\
+            </form></div></div>' }
+        const Reg = {
+            template: '<div><div class="col-md-offset-3 col-md-6">\
+            <form><span>User registe</span><div class="form-group">\
+                <input type="email" class="form-control" placeholder="email">\
+                <i class="fa fa-user"></i></div> <div class="form-group help">\
+                    <input type="password" class="form-control" placeholder="password">\
+                    <i class="fa fa-lock"></i></div>\
+                    <a href="#" class="fa fa-question-circle"></a> \
+                    <div class="form-group">\
+                        <button class="btn btn-md btn-primary btn-block" type="submit">Registe</button>\
+                    </div>\
+                        </form></div></div>' }
+
+
+        var router = new VueRouter({
+            routes: [
+                { path: '/home', component: Home },
+                { path: '/paths', component: Paths },
+                { path: '/bootcamp', component: Bootcamp },
+                { path: '/discuss', component: Discuss },
+                {
+                    path: '/courses', component: Courses,
+                    children: [
+                        { path: 'all', component: coursesall },
+                        { path: 'priview', component: coursespriview },
+                        { path: 'develop', component: coursesdevelop }
+                    ]
+                },
+                { path: '/login', component: Login },
+                { path: '/reg', component: Reg }
+            ]
+        });
+
+        const app = new Vue({
+            router,
+            el:"#app",
+            data:{
+                course:[
+                    {coursetitle:"freshman readme",coursecontent:"freshman readme",coursehit:76471},
+                    {coursetitle:"Linux Basic",coursecontent:"Linux Basic",coursehit:93388},
+                    {coursetitle:"C language",coursecontent:"C language",coursehit:167},
+                    {coursetitle:"C Plus Plus",coursecontent:"C Plus Plus",coursehit:163},
+                    {coursetitle:"PHP learn",coursecontent:"PHP learn",coursehit:140}
+                ],
+            }
+        }).$mount("#app");
+    </script>
+</body>
+
+</html>
