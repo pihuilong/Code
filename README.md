@@ -10,3 +10,4 @@ Some practice Code
 * **JQ_Slider**该文件夹为使用jquery写的图片轮播
 * **CSS3_GroundGlass**该文件夹为使用CSS3技术实现图片毛玻璃效果（全图&&局部）
 * **scratch_card**该文件夹为使用HTML5、canvas写的刮刮卡
+* **lottery**该文件夹为使用CSS3、JQuery写大抽奖大转盘
