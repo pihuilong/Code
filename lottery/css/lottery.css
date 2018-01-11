@@ -1,0 +1,147 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    font-family: "Microsoft YaHei",微软雅黑;
+}
+
+.box{
+    width: 600px;
+    height: 600px;
+    background-color: #d40;
+    margin: 10px auto;
+    padding: 20px;
+    position: relative;
+    border-radius: 50%;
+}
+.lottery{
+    width: 600px;
+    height: 600px;
+    margin: 0 auto;
+    position: relative;
+    background-color: #330000;
+    box-shadow: 0 0 15px #000;
+    overflow: hidden;
+    border-radius: 50%;
+    /* transition: transform 10s ease; */
+}
+/* .lottery:hover{ */
+    /* transform: rotate(1822.5deg); */
+    /* animation: lottery 15s 3s infinite ease-in-out; */
+/* } */
+
+.block{
+    box-shadow: 0 0 1px #000 inset;
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    transform-origin: right bottom 0;
+    -webkit-transform-origin: right bottom 0;
+}
+.block:nth-child(odd){
+    background:linear-gradient(to left top,#f7941c,#ffaabb);
+}
+.block:nth-child(even){
+    background: linear-gradient(to left top,#fdcd51,#feeeaa);  
+}
+
+.content{
+    width: 200px;
+    height: 230px;
+    transform-origin: center center 0;
+    transform: skewY(-45deg) rotate(-22.5deg) translate(10px,70px);
+    -webkit-transform: skewY(-45deg) rotate(-22.5deg) translate(10px,70px);
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    text-align: center;
+}
+.content .img{
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+}
+.content .text{
+    width: 100px;
+    height: 50px;
+    margin: 0 auto;
+}
+.content .none{
+    width: 30px;
+    height: 200px;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 23px;
+    line-height: 200%;
+    font-weight: bold;
+}
+
+.btn:before{
+    display: block;
+    content:"";
+    position: absolute;
+    top: -30px;
+    left: 30px;
+    border-bottom: 40px solid #d40;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+}
+.btn{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 100px;
+    background-color: #d40;
+    position: absolute;
+    top: 270px;
+    left: 270px;
+    cursor: pointer;
+    box-shadow: 0 0 7px #000 inset;
+    color: #fff;
+}
+
+/* @keyframes lottery{
+    from{
+        transform: rotate(0deg);
+    }
+    to{
+        transform: rotate(1822.5deg);
+    }
+}
+@-webkit-keyframes lottery{
+    from{
+        transform: rotate(0deg);
+    }
+    to{
+        transform: rotate(1822.5deg);
+    }
+} */
+
+
+
+/* .block:nth-child(1){
+    transform: rotate(0deg);
+}
+.block:nth-child(2){
+    transform: rotate(45deg);
+}
+.block:nth-child(3){
+    transform: rotate(90deg);
+}
+.block:nth-child(4){
+    transform: rotate(135deg);
+}
+.block:nth-child(5){
+    transform: rotate(180deg);
+}
+.block:nth-child(6){
+    transform: rotate(225deg);
+}
+.block:nth-child(7){
+    transform: rotate(270deg);
+}
+.block:nth-child(8){
+    transform: rotate(315deg);
+} */
