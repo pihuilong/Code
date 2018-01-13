@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="todoapp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>learning by doing</title>
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/bootstrap-theme.min.css">
+</head>
+<body>
+    <div style="background-color:#dcdcdc;width:373px;">
+        <img src="./images/logo.png" alt="">
+        <button class="btn btn-success">learning by doing</button>
+    </div>
+    <!-- 引入人型时钟代码 start -->
+    <div>
+        <object>
+           <embed src="./time.swf" width="373px;" height="150px;" align="center" quality="high" ></embed>
+       </object>
+    </div>
+    <!-- 引入人型时钟代码 end -->
+    <div style="width:373px;">
+        <section ng-controller="todolistcontroller">
+            <!-- 输入框按钮组 start-->
+            <form class="input-group input-group-lg">
+                <input ng-model="text" type="text" class="form-control">
+                <span class="input-group-btn">
+                    <button class="btn btn-success" ng-click="add()"> 增加 </button>
+                </span>
+            </form>
+            <!-- 输入框按钮组 end-->
+            <!-- 清单列表 start -->
+            <ul class="list-group">
+                <li ng-repeat="item in todolist" ng-class="{'done':item.done}" class="list-group-item">
+                    <button ng-click="delete(item)" class="close" aria-label="close">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only"> Close </span>
+                    </button>
+                    <div class="checkbox">
+                        <label>
+                            <input ng-model="item.done" type="checkbox">
+                            <span>{{item.text}}</span>    
+                        </label>
+                    </div>
+                </li>
+                <p>
+                    总共 <strong>{{todolist.length}}</strong>个任务，已完成<strong>{{doneCount()}}</strong>个
+                </p>
+            </ul>
+            <!-- 清单列表 end -->
+        </section>
+    </div>
+
+    <script src="./js/angular.min.js"></script>
+    <script src="./js/todolist.js"></script>
+</body>
+</html>

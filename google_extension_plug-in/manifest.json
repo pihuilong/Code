@@ -1,0 +1,19 @@
+{
+    // 这个地方是固定的
+    "manifest_version": 2,
+    // 插件显示的名称
+    "name": "Google_Time",
+    // 对插件的详细描述
+    "description": "Life is short, i use javascript.",
+    // 版本描述
+    "version": "1.0",
+    // 浏览器的行为
+    "browser_action": {
+        // 插件的图标
+        "default_icon": "icon.png",
+        // 插件的标题
+        "default_title": "Learning by doing",
+        // 单击图标时，插件执行的页面
+        "default_popup": "popup.html"
+    }
+}
