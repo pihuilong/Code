@@ -11,3 +11,5 @@ Some practice Code
 * **CSS3_GroundGlass**该文件夹为使用CSS3技术实现图片毛玻璃效果（全图&&局部）
 * **scratch_card**该文件夹为使用HTML5、canvas写的刮刮卡
 * **lottery**该文件夹为使用CSS3、JQuery写的抽奖大转盘
+* **google_extension_plug-in**该文件夹为使用bootstrap、angular写的chrome扩展插件
+* **Utils**该文件夹内包含jquery、bootstrap、vue等一些常用框架
