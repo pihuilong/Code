@@ -8,7 +8,7 @@ var falls = {
   //每次加载的第一张图片相对于所有图片（包括已加载图片）的索引
   num:0,
   //加载图片数，默认 9 张，根据实际修改
-  dataNum:9
+  dataNum:9,
 }
 
 //初始化函数
@@ -29,25 +29,14 @@ function getData(){
         if(data.success){
             var row = data.row,
                   len = row.length,
-                  html = "";1
+                  html = "";
             
             //将获取到的数据通过字符串连接的方式添加到 html 内容中
             for(var i=0;i<len;i++){
                 html+="<div class='img-box'><img src='"+row[i].src+"'/></div>";
             }
             $("#container").append(html);
-            getLeft();
-             //可确保不同的显示器屏幕能初始化时便将图片布满屏幕
-            if(getMinHeight()<window.screen.height){
-                getData();
-            }
-            falls.imgArray = [];
-            $("#container .img-box").each(function(i){
-                if(i >= falls.num){
-                    falls.imgArray.push(this);
-                }
-            });
-            falls.num += falls.dataNum;
+           
 
             //修改每张图片的位置
             reset();
@@ -68,6 +57,19 @@ function getLeft(){
 }
 
 function reset(){
+    getLeft();
+    //可确保不同的显示器屏幕能初始化时便将图片布满屏幕
+   if(getMinHeight()<window.screen.height){
+       getData();
+   }
+   falls.imgArray = [];
+   $("#container .img-box").each(function(i){
+       if(i >= falls.num){
+           falls.imgArray.push(this);
+       }
+   });
+   falls.num += falls.dataNum;
+
     var img = falls.imgArray;
     for(var i=0,len=img.length;i<len;i++){
         var minHeight = getMinHeight(),

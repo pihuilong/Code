@@ -1,0 +1,24 @@
+*{
+    margin: 0;
+    padding: 0;
+    background-color: #ccc;
+}
+
+#container{
+    width: 1300px;
+    column-width: 270px;
+    -webkit-column-width: 270px;
+    -moz-column-width: 270px;
+    margin: 0 auto;
+}
+
+#container .img-box{
+    cursor: pointer;
+    padding: 5px;
+    float: left;
+
+}
+
+#container .img-box img{
+    width: 250px;
+}
