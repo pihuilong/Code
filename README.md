@@ -13,4 +13,4 @@ Some practice Code
 * **lottery**该文件夹为使用CSS3、JQuery写的抽奖大转盘
 * **google_extension_plug-in**该文件夹为使用bootstrap、angular写的chrome扩展插件
 * **Utils**该文件夹内包含jquery、bootstrap、vue等一些常用框架
-* **waterfalls**该文件夹为使用Jquery以及CSS3实现的瀑布流
+* **waterfalls**该文件夹为使用Jquery以及CSS3实现的瀑布流、涉及到节流防抖
