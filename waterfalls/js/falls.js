@@ -16,21 +16,43 @@ var falls = {
 //初始化函数
 $(function () {
     start();
-    // $(window).resize(function(){
-    //     $("#container").html("");
-    //     start();
-    // });
 });
 
-function start(){
+function start() {
     init();
     run();
-    window.onscroll = function () {
-        var minHeight = getMinHeight();
-        if (checkWillLoad()) {
-            run();
+
+    // var ticking = false;
+    // window.addEventListener("scroll",onScroll,false);
+
+    // function onScroll(){
+    //     if(!ticking){
+    //         requestAnimationFrame(function(){
+    //             var minHeight = getMinHeight();
+    //             if (checkWillLoad()) {
+    //                 run();
+    //             }
+    //         });
+    //         ticking = true;
+    //     }
+    // }
+    window.onscroll = throttle(
+        function () {
+            var minHeight = getMinHeight();
+            if (checkWillLoad()) {
+                run();
+            }
         }
-    }
+        ,200,1000/60
+    ) 
+    // window.onresize = throttle(
+    //     function(){
+    //         window.scrollY=0;
+    //         $("#container").html("");
+    //         start();
+    //     },
+    //     200,300
+    // )
 }
 
 //使用JSON数据模拟从后台获取图片数据
@@ -118,10 +140,38 @@ function reset() {
 }
 
 //判断是否加载图片的条件：最后一张图片顶部相对于页面的位置>=文档高度+滚动条的垂直位置
-function checkWillLoad(){
+function checkWillLoad() {
     var lastBox = $("#container .img-box").last();
     var topOffset = $(lastBox).offset().top;
     var screenHeight = $(window).height();
     var scrollTop = $(window).scrollTop();
     return topOffset <= screenHeight + scrollTop;
 }
+
+//滚动优化函数：节流&防抖
+/**
+ * see detail : https://www.cnblogs.com/coco1s/p/5499469.html
+ * @param {真正要执行的函数} func 
+ * @param {防抖间隔} wait 
+ * @param {必须运行的时间间隔} mustRun 
+ */
+function throttle(func, wait, mustRun) {
+    var timeout,
+        startTime = new Date();
+    return function () {
+        var context = this,
+            args = arguments,
+            curTime = new Date();
+
+        clearTimeout(timeout);
+        // 如果达到了规定的触发时间间隔，触发 handler
+        if (curTime - startTime >= mustRun) {
+            func.apply(context, args);
+            startTime = curTime;
+            // 没达到触发间隔，重新设定定时器
+        } else {
+            timeout = setTimeout(func, wait);
+        }
+    };
+}
+
