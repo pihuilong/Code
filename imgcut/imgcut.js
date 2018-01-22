@@ -223,8 +223,8 @@ var postFile = {
                         t.cWidth = pageX > t.imgWidth ? (t.imgWidth-t.cx) : (pageX-t.cx);
                     }
                     if(topFlag){
-                        if(pageY>t.cy+t.cWidth-20){
-                            pageY = t.cy+t.cWidth-20;
+                        if(pageY>t.cy+t.cHeight-20){
+                            pageY = t.cy+t.cHeight-20;
                         }
                         t.cy = pageY < 0 ? 0 :pageY;
                         t.cHeight += t.ty-t.cy;
