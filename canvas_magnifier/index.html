@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>canvas 放大镜</title>
+    <style>
+        #copycanvas{
+            border: 1px solid #000;
+            display: none;
+        }
+        #square {
+            width: 100px;
+            height: 100px;
+            background-color: #ccc;
+            border: 1px solid #f00;
+            opacity: 0.5;
+            position: absolute;
+            z-index: 999;
+            display: none;
+            cursor: crosshair;
+        }
+        #choose_img{
+            margin-bottom: 20px;
+        }
+        #regional{
+            width: 500px;
+            height: 500px;
+            position: relative;
+            display: inline-block;
+            border: 1px solid #ccc;
+        }
+        #canvas{
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <input type="file" name="" id="choose_img">
+        <label for="times">times:</label>
+        <select name="times" id="times">
+            <option value="2">2</option>
+            <option value="3" selected>3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+        </select>
+    </div>
+    <div id="regional">
+        <canvas id="canvas"></canvas>
+    </div>
+    <canvas id="copycanvas" width="300" height="300"></canvas>
+    <div id="square"></div>
+
+    <script src="main.js"></script>
+</body>
+</html>
