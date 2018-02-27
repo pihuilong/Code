@@ -17,3 +17,4 @@ Some practice Code
 * **imgcut**该文件夹为使用js以及HTML5 canvas写的图片裁剪保存工具
 * **canvas_game**该文件夹为使用canvas写的一个简单的游戏
 * **canvas_magnifier**该文件夹为使用canvas写的图片放大镜
+* **markdown_editor**该文件夹为使用ace、bootstrap、highlightjs、jquery、mark等类库写的markdown实时编辑器
